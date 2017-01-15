@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.amarnath.mybatis.mapper.CategoryMapper">
+
+	<resultMap id="resultMapCategory" type="com.amarnath.mybatis.bean.Category">
+		<result property="categoryId" jdbcType="NUMERIC" column="category_id"/>
+		<result property="categoryName" jdbcType="VARCHAR" column="category_name"/>
+	</resultMap>
+
+	<select id="selectCategoryById" parameterType="int"
+				resultType="com.amarnath.mybatis.bean.Category">
+		select category_name as categoryName from Category where category_id = #{id}
+	</select>
+	
+	<select id="getAll" resultMap="resultMapCategory">
+		SELECT CATEGORY_ID, CATEGORY_NAME FROM CATEGORY;
+	</select>
+	
+	<select id="selectCategoryByNameAndId" parameterType="java.util.Map" resultMap="resultMapCategory">
+		SELECT * FROM CATEGORY 
+		WHERE CATEGORY_ID = ${categoryId}
+		AND CATEGORY_NAME = "${categoryName}"
+	</select>
+	
+	<select id="updateById" parameterType="java.util.Map">
+		UPDATE CATEGORY 
+		SET CATEGORY_NAME = "${newCategoryName}"
+		WHERE CATEGORY_ID = ${categoryId}
+	</select>
+	
+	<select id="selectByCategoryObject" parameterType="com.amarnath.mybatis.bean.Category" resultMap="resultMapCategory">
+		SELECT * FROM CATEGORY 
+		WHERE CATEGORY_NAME = "${categoryName}"
+	</select>
+	
+	<select id="deleteById" parameterType="com.amarnath.mybatis.bean.Category">
+		DELETE FROM CATEGORY WHERE CATEGORY_ID = ${categoryId}
+	</select>
+	
+	<insert id="insertCategory" parameterType="com.amarnath.mybatis.bean.Category">
+		INSERT INTO CATEGORY (CATEGORY_ID, CATEGORY_NAME) VALUES (${categoryId}, "${categoryName}")
+	</insert>
+</mapper>
