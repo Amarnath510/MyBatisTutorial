@@ -43,7 +43,9 @@ public class App
     	System.out.println("\n***** Delete Object with ID 5 *****");
     	CategoryManager.deleteById(new Category(5, null));
     	
-    	System.out.println("\n***** Insert Object *****");
+    	System.out.println("\n***** Insert Object with ID 6 *****");
+    	// Delete if already exists and then insert.
+    	CategoryManager.deleteById(new Category(6, null));
     	CategoryManager.insertCategory(new Category(6, "AFRICAN"));
     }
 }

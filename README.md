@@ -42,6 +42,6 @@
 
 ## Operations
   - Insert (Insert a record. Don't forget to add commit statement after insert.)
-  - Delete
-  - Update
+  - Delete (It will return the number of rows deleted. You can use it or ignore.)
+  - Update (It will return the number of rows updated. You can use it or ignore.)
   - Read (by Id or all)
